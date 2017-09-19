@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+    
+<struts>
+
+	<!-- 配置常量 -->
+	<constant name="struts.devMode" value="true"></constant>
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	<constant name="struts.locale" value="zh_CN"></constant>
+	
+	<!-- 
+		package: 目录，包，文件夹
+		name: 唯一标识，不能重复
+		namespace: 包名，目录名
+		extends： 继承
+	 -->
+	 <package name="root" namespace="/" extends="myPackage">
+	 	<action name="login" class="com.zhiyou.struts2demo.action.LoginAction">
+	 		<result name="input">/index.jsp</result>
+	 		<result name="success" type="chain">
+	 			<param name="actionName">list</param>
+	 			<param name="namespace">/pages</param> -->
+	 		</result><!-- /WEB-INF/pages/suc.jsp -->
+	 	</action>
+	 </package>
+	 
+	 <package name="test" namespace="/pages" extends="struts-default">
+	 	<action name="list" class="com.zhiyou.struts2demo.action.HelloAction">
+	 		<result name="success">/WEB-INF/pages/test.jsp</result>
+	 		<result name="input">/suc.jsp</result>
+	 	</action>
+	 	<action name="insert" class="com.zhiyou.struts2demo.action.HelloAction">
+	 		<result name="success">/WEB-INF/pages/create.jsp</result>
+	 		<result name="input">/suc.jsp</result>
+	 	</action>
+	 </package>
+	 
+	 <package name="myPackage" extends="struts-default">
+	 	<global-results>
+	 		<result name="forward">/forward.jsp</result>
+	 	</global-results>
+	 </package>
+	 
+	 <!-- <package name="error" namespace="/" extends="myPackage"></package> -->
+	 
+	
+</struts>
